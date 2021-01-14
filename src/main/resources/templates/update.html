@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+<form method="post" th:action="@{/update}">
+
+    <tr style="background-color: aquamarine">
+        <td colspan="2" style="text-align: center">更新电子图书</td>
+    </tr>
+    <tr>
+        <td> 图书编号</td>
+        <td><input type="text" th:value="${ebookEntry?.id}" readonly="readonly" name="id"></td>
+    </tr>
+    <tr>
+        <td> 图书名称</td>
+        <td><input type="text" name="title" th:value="${ebookEntry?.title}"></td>
+    </tr>
+    <tr>
+        <td>图书摘要</td>
+        <td> <input type="text" name="summary" th:value="${ebookEntry?.summary}"></td>
+    </tr>
+    <tr>
+        <td>上传人</td>
+        <td><input type="text" name="uploaduser" th:value="${ebookEntry?.uploaduser}"></td>
+    </tr>
+    <tr>
+        <td> 上传时间(*)</td>
+        <td><input type="text" name="create_time" th:value="${ebookEntry?.createdate}">(yyyy-MM-dd)</td>
+    </tr>
+
+    <tr>
+        <td colspan="2"><input type="submit" value="提交"><button>提交</button></td>
+    </tr>
+
+</form>
+</table>
+</body>
+</html>

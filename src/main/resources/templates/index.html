@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--在页面中引入thymeleaf-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post"  th:action="@{/index}">
+    <select name="category_id">
+        <option th:value="null">全部</option>
+        <option th:each="list : ${list}" th:value="${list.id}" th:text="${list.name}"></option>
+    </select>
+    <input type="submit" value="查询">
+    <a th:href="@{/toInsert}">新增电子图书</a>
+    <table border="1">
+        <tr>
+            <td colspan="6" style="text-align: center">电子图书列表</td>
+        </tr>
+        <tr>
+            <th>图书编号</th>
+            <th>图书名称</th>
+            <th>图书摘要</th>
+            <th>上传人</th>
+            <th>上传时间</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="eb : ${pageInfo.getRecords()}">
+            <!--/*@thymesVar id="id" type="com.jiangzhu.entity.EbookEntry"*/-->
+            <td th:text="${eb.id}"></td>
+            <td th:text="${eb.title}"></td>
+            <td th:text="${eb.summary}"></td>
+            <td th:text="${eb.uploaduser}"></td>
+            <td th:text="${eb.createTime}"></td>
+            <td>
+                <a th:href="@{/toupdate(id=${eb.id})}">修改</a>
+                <a th:href="@{/Delete(id=${eb.id})}">删除</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</form>
+第<span th:text="${pageInfo.getCurrent()}"></span>页/共<span th:text="${pageInfo.getPages()}"></span>页
+<a th:if="${pageInfo.getCurrent()!=1}" th:href="@{/index(pageNum=1)}">首页</a>
+<a th:if="${pageInfo.getCurrent()!=1}" th:href="@{/index(pageNum=${pageInfo.getCurrent()}-1)}">上一页</a>
+<a th:if="${pageInfo.getCurrent()!=pageInfo.getPages()}" th:href="@{/index(pageNum=${pageInfo.getCurrent()}+1)}">下一页</a>
+<a th:if="${pageInfo.getCurrent()!=pageInfo.getPages()}" th:href="@{/index(pageNum=${pageInfo.getPages()})}">末页</a>
+
+</body>
+</html>

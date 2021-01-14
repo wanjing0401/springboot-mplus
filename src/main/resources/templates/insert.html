@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/insert}">
+    图书名称:<input type="text" name="title"><br/>
+    图书摘要:<input type="text" name="summary"><br/>
+    上传人:<input type="text" name="uploaduser"><br/>
+    上传时间:<input type="text" name="create_time">(yyyy-MM-dd)<br/>
+<input type="submit" value="提交">
+</form>
+</body>
+</html>
